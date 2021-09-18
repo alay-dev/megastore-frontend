@@ -15,7 +15,7 @@ import { RELOAD_LOGIN, LOGIN, LOGOUT } from "../../constants/login/loginConst";
 import UNIVERSAL from "../../config/config";
 import firebase from "firebase";
 import history from "../../history";
-import { facebookProvider, googleProvider } from "../../config/firebaseConfig";
+import { googleProvider } from "../../config/firebaseConfig";
 
 export function signup(user) {
   return (dispatch) => {

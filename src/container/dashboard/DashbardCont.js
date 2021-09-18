@@ -1,4 +1,3 @@
-import { Component } from "react";
 import Dashboard from "../../pages/Dashboard";
 import { set_snackbar_status } from "../../actions/snackbar/snackbarActions";
 import { get_all_users } from "../../actions/user/userActions";
@@ -16,10 +15,8 @@ import {
 } from "../../actions/product/productActions";
 import { connect } from "react-redux";
 
-class DashboardCont extends Component {
-  render() {
-    return <Dashboard {...this.props} />;
-  }
+function DashboardCont(props) {
+  return <Dashboard {...props} />;
 }
 
 const mapStateToProps = (store) => {

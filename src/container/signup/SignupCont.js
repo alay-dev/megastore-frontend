@@ -1,4 +1,3 @@
-import { Component } from "react";
 import Signup from "../../pages/Signup";
 import { set_snackbar_status } from "../../actions/snackbar/snackbarActions";
 import {
@@ -10,10 +9,8 @@ import {
 } from "../../actions/login/loginActions";
 import { connect } from "react-redux";
 
-class SignupCont extends Component {
-  render() {
-    return <Signup {...this.props} />;
-  }
+function SignupCont(props) {
+  return <Signup {...props} />;
 }
 
 const mapStateToProps = (store) => {

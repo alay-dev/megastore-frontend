@@ -1,12 +1,9 @@
-import { Component } from "react";
 import Home from "../../pages/Home";
 import { set_snackbar_status } from "../../actions/snackbar/snackbarActions";
 import { connect } from "react-redux";
 
-class HomeCont extends Component {
-  render() {
-    return <Home {...this.props} />;
-  }
+function HomeCont(props) {
+  return <Home {...props} />;
 }
 
 const mapStateToProps = (store) => {

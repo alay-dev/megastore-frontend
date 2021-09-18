@@ -1,4 +1,3 @@
-import { Component } from "react";
 import Header from "../../components/Header";
 import { set_snackbar_status } from "../../actions/snackbar/snackbarActions";
 import {
@@ -10,10 +9,8 @@ import {
 } from "../../actions/login/loginActions";
 import { connect } from "react-redux";
 
-class HeaderCont extends Component {
-  render() {
-    return <Header {...this.props} />;
-  }
+function HeaderCont(props) {
+  return <Header {...props} />;
 }
 
 const mapStateToProps = (store) => {
