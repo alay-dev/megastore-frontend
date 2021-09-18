@@ -1,0 +1,90 @@
+.dealoftheday {
+  padding: 1.5rem 5rem;
+  margin-bottom: 4rem;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  position: relative;
+  background-color: rgb(108, 195, 213);
+
+  @media only screen and (max-width: 800px) {
+    padding: 0 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 0 0.5rem;
+  }
+
+  //   display: flex;
+  //   justify-content: center;
+
+  &__heading {
+    padding: 0.5rem 1rem;
+    border: 2px solid #888;
+    width: max-content;
+    background-color: #fff;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    & h4 {
+      margin-bottom: 0;
+    }
+  }
+
+  &__cont {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+
+    @media only screen and (max-width: 480px) {
+      gap: 0.5rem;
+    }
+
+    & .card {
+      width: 12rem;
+      height: 16rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 9.2rem;
+        height: 14rem;
+      }
+    }
+
+    & .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        text-align: center;
+        line-height: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      & button {
+        @media only screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    & img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+
+      @media only screen and (max-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+  }
+}

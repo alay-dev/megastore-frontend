@@ -1,0 +1,31 @@
+.signup {
+  margin-top: 3.2rem;
+  padding: 4rem 5rem 4rem;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+
+  background-image: linear-gradient(to right bottom, #19aa8d8e, #fff 60%);
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 0.2rem 3rem;
+  }
+
+  & .cont {
+    width: 25rem;
+
+    & .addon {
+      position: relative;
+
+      & .fa-check {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 0.5rem;
+        color: #fff;
+
+        transform: translate(-50%, -10%);
+      }
+    }
+  }
+}

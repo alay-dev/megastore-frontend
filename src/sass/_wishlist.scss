@@ -1,0 +1,73 @@
+.wishlist {
+  margin-top: 3.2rem;
+  padding: 2rem 5rem;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+
+  & .table__cont {
+    max-height: 70vh;
+    overflow-y: auto;
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 0.4rem;
+  }
+
+  & .item_name {
+    flex-wrap: wrap;
+
+    & p {
+      margin-bottom: 0;
+    }
+  }
+
+  & .quantity {
+    @media only screen and (max-width: 480px) {
+      gap: 0.2rem !important;
+    }
+
+    button {
+      @media only screen and (max-width: 480px) {
+        padding: 0.1rem 0.2rem !important;
+      }
+    }
+  }
+
+  & .row__cont {
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    & button {
+      padding: 0.2rem 0.5rem;
+    }
+
+    & i {
+      font-size: 0.8rem;
+    }
+    & .amount {
+      margin-bottom: 0;
+      border: 1px solid grey;
+      padding: 0 1rem;
+    }
+
+    & h5 {
+      @media only screen and (max-width: 480px) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  & td img {
+    width: 3rem;
+    height: 4rem;
+    object-fit: contain;
+  }
+}

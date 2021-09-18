@@ -1,0 +1,583 @@
+.fruits {
+  min-height: 60vh;
+  margin-top: 3.2rem;
+  padding: 2rem 5rem;
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 0.5rem;
+  }
+
+  & .searchbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cont {
+    display: flex;
+    justify-content: center;
+    min-height: 20rem;
+    height: max-content;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+
+    @media only screen and (max-width: 480px) {
+      gap: 0.5rem;
+    }
+
+    & .card {
+      width: 12rem;
+      height: 16rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 9.2rem;
+        height: 14rem;
+      }
+    }
+
+    & .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        text-align: center;
+        line-height: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      & button {
+        @media only screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    & img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+
+      @media only screen and (max-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.seafood {
+  min-height: 60vh;
+  margin-top: 3.2rem;
+  padding: 2rem 5rem;
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 0.5rem;
+  }
+
+  & .searchbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cont {
+    display: flex;
+    justify-content: center;
+    min-height: 20rem;
+    height: max-content;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+
+    @media only screen and (max-width: 480px) {
+      gap: 0.5rem;
+    }
+
+    & .card {
+      width: 12rem;
+      height: 16rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 9.2rem;
+        height: 14rem;
+      }
+    }
+
+    & .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        text-align: center;
+        line-height: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      & button {
+        @media only screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    & img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+
+      @media only screen and (max-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.bakery {
+  min-height: 60vh;
+  margin-top: 3.2rem;
+  padding: 2rem 5rem;
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 0.5rem;
+  }
+
+  & .searchbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cont {
+    display: flex;
+    justify-content: center;
+    min-height: 20rem;
+    height: max-content;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+
+    @media only screen and (max-width: 480px) {
+      gap: 0.5rem;
+    }
+
+    & .card {
+      width: 12rem;
+      height: 16rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 9.2rem;
+        height: 14rem;
+      }
+    }
+
+    & .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        text-align: center;
+        line-height: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      & button {
+        @media only screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    & img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+
+      @media only screen and (max-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.beverage {
+  min-height: 60vh;
+  margin-top: 3.2rem;
+  padding: 2rem 5rem;
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 0.5rem;
+  }
+
+  & .searchbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cont {
+    display: flex;
+    justify-content: center;
+    min-height: 20rem;
+    height: max-content;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+
+    @media only screen and (max-width: 480px) {
+      gap: 0.5rem;
+    }
+
+    & .card {
+      width: 12rem;
+      height: 16rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 9.2rem;
+        height: 14rem;
+      }
+    }
+
+    & .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        text-align: center;
+        line-height: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      & button {
+        @media only screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    & img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+
+      @media only screen and (max-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.foodgrain {
+  min-height: 60vh;
+  margin-top: 3.2rem;
+  padding: 2rem 5rem;
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 0.5rem;
+  }
+
+  & .searchbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cont {
+    display: flex;
+    justify-content: center;
+    min-height: 20rem;
+    height: max-content;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+
+    @media only screen and (max-width: 480px) {
+      gap: 0.5rem;
+    }
+
+    & .card {
+      width: 12rem;
+      height: 16rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 9.2rem;
+        height: 14rem;
+      }
+    }
+
+    & .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        text-align: center;
+        line-height: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      & button {
+        @media only screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    & img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+
+      @media only screen and (max-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.snack {
+  min-height: 60vh;
+  margin-top: 3.2rem;
+  padding: 2rem 5rem;
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 0.5rem;
+  }
+
+  & .searchbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cont {
+    display: flex;
+    justify-content: center;
+    min-height: 20rem;
+    height: max-content;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+
+    @media only screen and (max-width: 480px) {
+      gap: 0.5rem;
+    }
+
+    & .card {
+      width: 12rem;
+      height: 16rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 9.2rem;
+        height: 14rem;
+      }
+    }
+
+    & .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        text-align: center;
+        line-height: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      & button {
+        @media only screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    & img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+
+      @media only screen and (max-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.personalcare {
+  min-height: 60vh;
+  margin-top: 3.2rem;
+  padding: 2rem 5rem;
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 0.5rem;
+  }
+
+  & .searchbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cont {
+    display: flex;
+    justify-content: center;
+    min-height: 20rem;
+    height: max-content;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+
+    @media only screen and (max-width: 480px) {
+      gap: 0.5rem;
+    }
+
+    & .card {
+      width: 12rem;
+      height: 16rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 9.2rem;
+        height: 14rem;
+      }
+    }
+
+    & .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        text-align: center;
+        line-height: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      & button {
+        @media only screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    & img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+
+      @media only screen and (max-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.household {
+  min-height: 60vh;
+  margin-top: 3.2rem;
+  padding: 2rem 5rem;
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 0.5rem;
+  }
+
+  & .searchbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cont {
+    display: flex;
+    justify-content: center;
+    min-height: 20rem;
+    height: max-content;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+
+    @media only screen and (max-width: 480px) {
+      gap: 0.5rem;
+    }
+
+    & .card {
+      width: 12rem;
+      height: 16rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 9.2rem;
+        height: 14rem;
+      }
+    }
+
+    & .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        text-align: center;
+        line-height: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      & button {
+        @media only screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    & img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+
+      @media only screen and (max-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+  }
+}

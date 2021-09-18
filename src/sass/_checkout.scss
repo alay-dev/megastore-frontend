@@ -1,0 +1,76 @@
+.checkout {
+  min-height: 60vh;
+  margin-top: 3.2rem;
+  padding: 2rem 5rem;
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  & .cont__ {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    @media only screen and (max-width: 660px) {
+      flex-wrap: wrap;
+    }
+  }
+
+  & h4 {
+    margin-bottom: 1rem;
+  }
+
+  &__left {
+    width: 60%;
+
+    & .contact_cont {
+      display: flex;
+      gap: 1rem;
+      @media only screen and (max-width: 480px) {
+        flex-wrap: wrap;
+        gap: 0.2rem;
+      }
+    }
+    & .lead {
+      margin-bottom: 0rem;
+    }
+
+    & .address {
+      margin-bottom: 0.4rem;
+    }
+    @media only screen and (max-width: 660px) {
+      flex-shrink: 0;
+      width: 100%;
+    }
+  }
+
+  &__right {
+    width: 30%;
+
+    @media only screen and (max-width: 660px) {
+      flex-shrink: 0;
+      width: 50%;
+    }
+
+    @media only screen and (max-width: 480px) {
+      flex-shrink: 0;
+      width: 100%;
+    }
+    & .row__ {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    & .final {
+      border-top: 2px solid #eee;
+    }
+  }
+
+  & .payment {
+    margin-bottom: 4rem;
+    & .btn {
+      margin-top: 2rem;
+    }
+  }
+}

@@ -1,0 +1,124 @@
+.item {
+  margin-top: 3.2rem;
+  padding: 4rem 10rem;
+  margin-bottom: 4rem;
+  display: flex;
+  gap: 8rem;
+
+  @media only screen and (max-width: 1000px) {
+    padding: 4rem 1rem;
+    gap: 6rem;
+  }
+
+  @media only screen and (max-width: 800px) {
+    gap: 2rem;
+  }
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 2rem 1rem;
+  }
+
+  &__left {
+    // border: 2px solid #eee;
+    border-radius: 1rem;
+    & img {
+      width: 20rem;
+      @media only screen and (max-width: 800px) {
+        width: 15rem;
+      }
+
+      @media only screen and (max-width: 480px) {
+        width: 10rem;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      align-self: center;
+    }
+  }
+
+  &__right {
+    & .quantity__cont {
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 1rem;
+
+      & .amount {
+        border: 1px solid black;
+        padding: 0.5rem 4rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.relatedproducts {
+  padding: 1rem 5rem;
+  margin-bottom: 4rem;
+
+  @media only screen and (max-width: 800px) {
+    padding: 0 1rem;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 0 0.5rem;
+  }
+
+  &__cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+
+    @media only screen and (max-width: 480px) {
+      gap: 0.5rem;
+    }
+
+    & .card {
+      width: 12rem;
+      height: 16rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 9.2rem;
+        height: 14rem;
+      }
+    }
+
+    & .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        text-align: center;
+        line-height: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      & button {
+        @media only screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    & img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+
+      @media only screen and (max-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+  }
+}
