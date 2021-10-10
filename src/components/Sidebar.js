@@ -10,7 +10,7 @@ function Sidebar({ setSection, section }) {
       </div>
       <ul>
         <li
-          className={this.props.section === "product" ? "active" : ""}
+          className={section === "product" ? "active" : ""}
           onClick={() => setSection("product")}
         >
           Product

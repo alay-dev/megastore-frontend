@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 
 function ProductSection({
+  login,
   product,
   set_product_category,
   set_product_desciption,
@@ -22,9 +23,13 @@ function ProductSection({
   set_product_price,
   set_product_ratings_average,
   add_product,
+  update_product,
+  delete_product,
 }) {
   const [add_modal, setAddModal] = useState(false);
   const [edit_modal, setEditModal] = useState(false);
+  const [delete_modal, setDeleteModal] = useState(false);
+  const [product_id, setProductId] = useState("");
 
   return (
     <div className="dashboard__section">
@@ -32,10 +37,7 @@ function ProductSection({
       <div
         style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}
       >
-        <button
-          className="btn btn-secondary"
-          onClick={() => this.setState({ add_modal: true })}
-        >
+        <button className="btn btn-secondary" onClick={() => setAddModal(true)}>
           Add new product
         </button>
       </div>
@@ -105,23 +107,85 @@ function ProductSection({
                         justifyContent: "center",
                       }}
                     >
-                      <IconButton size="small">
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          setProductId(row._id);
+                          setDeleteModal(true);
+                        }}
+                      >
                         <i className="fas fa-trash-alt" />
                       </IconButton>
                       <IconButton
                         size="small"
-                        onClick={(e) => setEditModal(true)}
+                        onClick={(e) => {
+                          set_product_name(row.name);
+                          set_product_category(row.category);
+                          set_product_desciption(row.description);
+                          set_product_discount(row.discount);
+                          set_product_onoffer(row.onOffer);
+                          set_product_ratings_average(row.ratingsAverage);
+                          set_product_price(row.price);
+                          setProductId(row._id);
+
+                          setEditModal(true);
+                        }}
                       >
                         <i className="fas fa-pencil-alt" />
                       </IconButton>
                     </TableCell>
                   </TableRow>
                   <Modal
-                    open={this.state.edit_modal}
-                    onClose={() => setEditModal(false)}
+                    open={delete_modal}
+                    onClose={() => setDeleteModal(false)}
                   >
                     <div>
-                      <div class="modal-dialog container" role="document">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Delete product</h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                              onClick={() => setDeleteModal(false)}
+                            >
+                              <span aria-hidden="true"></span>
+                            </button>
+                          </div>
+                          <div className="modal-body">
+                            <h6> Are you sure you want to delete?</h6>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-primary"
+                              onClick={() => {
+                                delete_product(product_id);
+                                setDeleteModal(false);
+                              }}
+                            >
+                              Delete
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                              onClick={() => {
+                                setDeleteModal(false);
+                              }}
+                            >
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Modal>
+                  <Modal open={edit_modal} onClose={() => setEditModal(false)}>
+                    <div>
+                      <div class="modal-dialog " role="document">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title">Edit products</h5>
@@ -136,7 +200,7 @@ function ProductSection({
                             </button>
                           </div>
                           <div
-                            class="modal-body"
+                            className="modal-body"
                             style={{ overflowY: "scroll", height: "70vh" }}
                           >
                             <div class="form-group">
@@ -148,7 +212,7 @@ function ProductSection({
                                 class="form-control"
                                 id="productName"
                                 placeholder="Enter product name"
-                                value={row.name}
+                                value={product.name}
                                 onChange={(e) =>
                                   set_product_name(e.target.value)
                                 }
@@ -173,7 +237,7 @@ function ProductSection({
                                   class="form-check-input"
                                   type="checkbox"
                                   id="flexSwitchCheckDefault"
-                                  defaultChecked={row.onOffer}
+                                  defaultChecked={product.on_offer}
                                   onChange={(e) => {
                                     set_product_onoffer(e.target.checked);
                                   }}
@@ -200,7 +264,7 @@ function ProductSection({
                                     class="form-control"
                                     id="exampleInputPassword1"
                                     placeholder="Enter product price"
-                                    value={row.price}
+                                    value={product.price}
                                     onChange={(e) =>
                                       set_product_price(e.target.value)
                                     }
@@ -218,7 +282,7 @@ function ProductSection({
                                         type="text"
                                         class="form-control"
                                         placeholder="Enter discount"
-                                        value={row.discount}
+                                        value={product.discount}
                                         onChange={(e) =>
                                           set_product_discount(e.target.value)
                                         }
@@ -243,20 +307,30 @@ function ProductSection({
                                   <select
                                     class="form-select"
                                     id="exampleSelect1"
-                                    value={row.category}
+                                    value={product.category}
                                     onChange={(e) =>
                                       set_product_category(e.target.value)
                                     }
                                   >
                                     <option>Choose category</option>
-                                    <option>Fruits & vegetables</option>
-                                    <option>Eggs, Seafood & meat</option>
-                                    <option>Beverages</option>
-                                    <option>Bakery</option>
-                                    <option>Foodgrains, oil & spices</option>
-                                    <option>Snacks & Packaged Food</option>
-                                    <option>Household</option>
-                                    <option>Personal car & cosmetics</option>
+                                    <option value="fruit_and_vegetable">
+                                      Fruits & vegetables
+                                    </option>
+                                    <option value="seafood_and_meat">
+                                      Eggs, Seafood & meat
+                                    </option>
+                                    <option value="beverage">Beverages</option>
+                                    <option value="bakery">Bakery</option>
+                                    <option value="foodgrain_and_spice">
+                                      Foodgrains, oil & spices
+                                    </option>
+                                    <option value="snack">
+                                      Snacks & Packaged Food
+                                    </option>
+                                    <option value="household">Household</option>
+                                    <option value="personalcare_and_cosmetic">
+                                      Personal car & cosmetics
+                                    </option>
                                   </select>
                                 </div>
                               </div>
@@ -273,7 +347,7 @@ function ProductSection({
                                     class="form-control"
                                     id="exampleInputPassword1"
                                     placeholder="Enter Ratings"
-                                    value={row.ratings_average}
+                                    value={product.ratings_average}
                                     onChange={(e) =>
                                       set_product_ratings_average(
                                         e.target.value
@@ -307,11 +381,11 @@ function ProductSection({
                               type="button"
                               class="btn btn-primary"
                               onClick={() => {
-                                add_product(product);
+                                update_product(product_id, product, login);
                                 setEditModal(false);
                               }}
                             >
-                              ADD
+                              Update
                             </button>
                             <button
                               type="button"
@@ -447,14 +521,22 @@ function ProductSection({
                         onChange={(e) => set_product_category(e.target.value)}
                       >
                         <option>Choose category</option>
-                        <option>Fruits & vegetables</option>
-                        <option>Eggs, Seafood & meat</option>
-                        <option>Beverages</option>
-                        <option>Bakery</option>
-                        <option>Foodgrains, oil & spices</option>
-                        <option>Snacks & Packaged Food</option>
-                        <option>Household</option>
-                        <option>Personal car & cosmetics</option>
+                        <option value="fruit_and_vegetable">
+                          Fruits & vegetables
+                        </option>
+                        <option value="seafood_and_meat">
+                          Eggs, Seafood & meat
+                        </option>
+                        <option value="beverage">Beverages</option>
+                        <option value="bakery">Bakery</option>
+                        <option value="foodgrain_and_spice">
+                          Foodgrains, oil & spices
+                        </option>
+                        <option value="snack">Snacks & Packaged Food</option>
+                        <option value="household">Household</option>
+                        <option value="personalcare_and_cosmetic">
+                          Personal car & cosmetics
+                        </option>
                       </select>
                     </div>
                   </div>

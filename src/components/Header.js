@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Drawer } from "@material-ui/core";
+import { Drawer, Badge } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import { Link } from "react-router-dom";
 import logoImg from "../img/logo.png";
 
 function Header({
   user,
+  cart,
   set_user_email,
   set_user_password,
   set_reload_login,
   do_login,
   login,
   logout,
+  get_user_cart,
 }) {
   const [login_drawer, setLoginDrawer] = useState(false);
   const [nav_open, setNavOpen] = useState(false);
@@ -21,7 +25,19 @@ function Header({
       const loginData = JSON.parse(localStorage?.getItem("megastore_login"));
       set_reload_login(loginData);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("megastore_token")) {
+      get_user_cart(JSON.parse(localStorage.getItem("megastore_login")));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    console.log(cart.cart.items?.length);
+  }, [cart]);
 
   return (
     <>
@@ -34,27 +50,38 @@ function Header({
           <Link to="/" style={{ textDecoration: "none" }}>
             <p>Home</p>
           </Link>
-          <Link to="/cart" style={{ textDecoration: "none" }}>
-            <p>Cart</p>
-          </Link>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <p>Whishlist</p>
-          </Link>
 
           {login?.email ? (
-            <p style={{ cursor: "pointer" }} onClick={() => logout()}>
-              Logout
-            </p>
+            <>
+              <Link to="/cart" style={{ textDecoration: "none" }}>
+                {/* <p>Cart</p> */}
+                <Badge badgeContent={cart.cart.items?.length} color="primary">
+                  <ShoppingCartIcon style={{ color: "#343a40" }} />
+                </Badge>
+              </Link>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <Badge badgeContent={10} color="primary">
+                  <FavoriteIcon style={{ color: "#343a40" }} />
+                </Badge>
+              </Link>
+              <button
+                className="btn btn-dark"
+                // style={{ cursor: "pointer" }}
+                onClick={() => logout()}
+              >
+                Logout
+              </button>
+            </>
           ) : (
-            <p
-              style={{ cursor: "pointer" }}
+            <button
+              className="btn btn-light "
               onClick={() => {
                 setLoginDrawer(!login_drawer);
                 setNavOpen(false);
               }}
             >
               Login
-            </p>
+            </button>
           )}
         </div>
         <i
@@ -72,16 +99,19 @@ function Header({
             <p onClick={() => setNavOpen(false)}>Whishlist</p>
           </Link>
           {login?.email ? (
-            <p onClick={() => logout()}>Logout</p>
+            <button className="btn btn-dark" onClick={() => logout()}>
+              Logout
+            </button>
           ) : (
-            <p
+            <button
+              className="btn btn-light"
               onClick={() => {
                 setLoginDrawer(!login_drawer);
                 setNavOpen(false);
               }}
             >
               Login
-            </p>
+            </button>
           )}
         </div>
 

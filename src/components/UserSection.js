@@ -58,7 +58,7 @@ function UserSection({ user }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {user.all_users.map((row, i) => {
+            {user?.all_users?.map((row, i) => {
               return (
                 <TableRow>
                   <TableCell

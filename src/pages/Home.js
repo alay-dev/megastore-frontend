@@ -13,8 +13,8 @@ function Home(props) {
         <HeroSlider />
         <ShopByCategory />
         <Feature />
-        <DealOfTheDay />
-        <TopSeller />
+        <DealOfTheDay {...props} />
+        <TopSeller {...props} />
         <SnackBar {...props} />
       </main>
     </div>

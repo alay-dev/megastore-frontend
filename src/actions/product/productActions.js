@@ -1,20 +1,7 @@
-import {
-  set_snackbar,
-  set_snackbar_message,
-  set_snackbar_serverity,
-  set_snackbar_status,
-} from "../snackbar/snackbarActions";
+import { set_snackbar } from "../snackbar/snackbarActions";
 import UNIVERSAL from "../../config/config";
 import firebase from "firebase";
-import {
-  set_all_post_loader,
-  unset_all_post_loader,
-  set_like_loader,
-  unset_like_loader,
-  unset_comment_loader,
-  set_post_loader,
-  unset_post_loader,
-} from "../loader/loaderActions";
+import { set_post_loader } from "../loader/loaderActions";
 import {
   SET_ALL_PRODUCTS,
   SET_PRODUCT_CATEGORY,
@@ -28,6 +15,8 @@ import {
   RESET_PRODUCT,
   SET_CURRENT_PRODUCT,
   SET_PRODUCT_OLD_IMAGE,
+  SET_DEAL_OF_THE_DAY,
+  SET_TOP_SELLER,
 } from "../../constants/product/productConst";
 
 export function get_all_products(login) {
@@ -46,6 +35,99 @@ export function get_all_products(login) {
       .then((responseJson) => {
         if (responseJson.status === "success") {
           dispatch(set_all_products(responseJson.data));
+        } else {
+          if (responseJson.message === "User does not exist") {
+            // dispatch(onLogout()) ;
+          } else {
+            // dispatch(set_snack_bar(responseJson.status, responseJson.message))
+          }
+        }
+        // dispatch(unset_all_post_loader());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function get_products_by_category(category, login) {
+  return (dispatch) => {
+    // dispatch(set_all_post_loader());
+
+    return fetch(UNIVERSAL.BASEURL + `/api/products/${category}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        // token: login.token,
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === "success") {
+          dispatch(set_all_products(responseJson.data));
+        } else {
+          if (responseJson.message === "User does not exist") {
+            // dispatch(onLogout()) ;
+          } else {
+            // dispatch(set_snack_bar(responseJson.status, responseJson.message))
+          }
+        }
+        // dispatch(unset_all_post_loader());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function get_deal_of_the_day(login) {
+  return (dispatch) => {
+    // dispatch(set_all_post_loader());
+
+    return fetch(UNIVERSAL.BASEURL + "/api/products/deal_of_the_day", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        // token: login.token,
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === "success") {
+          dispatch(set_deal_of_the_day(responseJson.data));
+        } else {
+          if (responseJson.message === "User does not exist") {
+            // dispatch(onLogout()) ;
+          } else {
+            // dispatch(set_snack_bar(responseJson.status, responseJson.message))
+          }
+        }
+        // dispatch(unset_all_post_loader());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function get_top_seller(login) {
+  return (dispatch) => {
+    // dispatch(set_all_post_loader());
+
+    return fetch(UNIVERSAL.BASEURL + "/api/products/top_seller", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        // token: login.token,
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === "success") {
+          dispatch(set_top_seller(responseJson.data));
         } else {
           if (responseJson.message === "User does not exist") {
             // dispatch(onLogout()) ;
@@ -93,35 +175,40 @@ export function get_product_by_id(id, login) {
   };
 }
 
+// export function add_product(product, login) {
+//   return (dispatch) => {
+//     dispatch(set_post_loader());
+//     if (product.image !== "") {
+//       var storageRef = firebase.storage().ref();
+//       var uploadTask = storageRef
+//         .child("products/" + product.name + ".png")
+//         .put(product.image);
+//       uploadTask.on(
+//         "state_changed",
+//         function (snapshot) {},
+//         function (error) {
+//           // dispatch(set_snack_bar(true, "Image Could Not Be sUploaded"));
+//         },
+//         function () {
+//           uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+//             dispatch(add_product_api(product, login, downloadURL));
+//           });
+//         }
+//       );
+//     } else {
+//       dispatch(add_product_api(product, login, ""));
+//     }
+//   };
+// }
+
 export function add_product(product, login) {
   return (dispatch) => {
-    dispatch(set_post_loader());
-    if (product.image !== "") {
-      var storageRef = firebase.storage().ref();
-      var uploadTask = storageRef
-        .child("products/" + product.name + ".png")
-        .put(product.image);
-      uploadTask.on(
-        "state_changed",
-        function (snapshot) {},
-        function (error) {
-          // dispatch(set_snack_bar(true, "Image Could Not Be sUploaded"));
-        },
-        function () {
-          uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-            dispatch(add_product_api(product, login, downloadURL));
-          });
-        }
-      );
-    } else {
-      dispatch(add_product_api(product, login, ""));
-    }
-  };
-}
-
-export function add_product_api(product, login, url) {
-  return (dispatch) => {
     console.log(UNIVERSAL, "Baseurl...");
+    // const formData = new FormData();
+    // formData.append("name", product.name);
+    // formData.append("price", product.price);
+    // formData.append("category", product.category);
+    // formData.append("image", product.image);
     return fetch(UNIVERSAL.BASEURL + "/api/products", {
       method: "POST",
       headers: {
@@ -129,7 +216,6 @@ export function add_product_api(product, login, url) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        image: url,
         name: product.name,
         price: product.price,
         category: product.category,
@@ -138,6 +224,7 @@ export function add_product_api(product, login, url) {
         description: product.description,
         ratingsAverage: product.ratingsAverage,
       }),
+      // body: formData,
     })
       .then((response) => response.json())
       .then((responseJson) => {
@@ -191,7 +278,7 @@ export function update_product(id, product, login) {
 export function update_product_api(id, product, login, url) {
   return (dispatch) => {
     // dispatch(setLoader());
-    return fetch(UNIVERSAL.BASEURL + "/api/products/", {
+    return fetch(UNIVERSAL.BASEURL + `/api/products/${id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -203,10 +290,10 @@ export function update_product_api(id, product, login, url) {
         name: product.name,
         price: product.price,
         category: product.category,
-        onOffer: product.onOffer,
+        onOffer: product.on_offer,
         discount: product.discount,
         description: product.description,
-        ratingsAverage: product.ratingsAverage,
+        ratingsAverage: product.ratings_average,
       }),
     })
       .then((response) => response.json())
@@ -228,7 +315,7 @@ export function update_product_api(id, product, login, url) {
   };
 }
 
-export function delete_products(id, login) {
+export function delete_product(id, login) {
   return (dispatch) => {
     // dispatch(setLoader());
 
@@ -333,6 +420,20 @@ export function set_product_desciption(payload) {
 export function set_product_ratings_average(payload) {
   return {
     type: SET_PRODUCT_RATINGSAVERAGE,
+    payload: payload,
+  };
+}
+
+export function set_deal_of_the_day(payload) {
+  return {
+    type: SET_DEAL_OF_THE_DAY,
+    payload: payload,
+  };
+}
+
+export function set_top_seller(payload) {
+  return {
+    type: SET_TOP_SELLER,
     payload: payload,
   };
 }

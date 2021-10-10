@@ -14,7 +14,7 @@ function ShopByCategory() {
     <div className="shopbycategory">
       <h5>SHOP BY CATEROGY</h5>
       <div className="shopbycategory__cont">
-        <Link to="/fruits_and_vegetables">
+        <Link to="/fruit_and_vegetable">
           <div className="card ">
             <img src={category1} />
           </div>
@@ -34,7 +34,7 @@ function ShopByCategory() {
             <img src={category4} />
           </div>
         </Link>
-        <Link to="/foodgrains_and_spice">
+        <Link to="/foodgrain_and_spice">
           <div className="card ">
             <img src={category5} />
           </div>
@@ -44,7 +44,7 @@ function ShopByCategory() {
             <img src={category6} />
           </div>
         </Link>
-        <Link to="/personalcare_and_cosmetics">
+        <Link to="/personalcare_and_cosmetic">
           <div className="card ">
             <img src={category7} />
           </div>

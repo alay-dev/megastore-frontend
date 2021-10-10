@@ -12,6 +12,8 @@ import {
   set_product_price,
   set_product_ratings_average,
   add_product,
+  update_product,
+  delete_product,
 } from "../../actions/product/productActions";
 import { connect } from "react-redux";
 
@@ -66,6 +68,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     add_product: (product) => {
       dispatch(add_product(product));
+    },
+    update_product: (id, product, login) => {
+      dispatch(update_product(id, product, login));
+    },
+    delete_product: (id, login) => {
+      dispatch(delete_product(id, login));
     },
   };
 };

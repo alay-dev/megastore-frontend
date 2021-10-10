@@ -134,6 +134,7 @@ body {
     width: 10rem; }
   .header__right {
     display: flex;
+    align-items: center;
     gap: 2rem;
     font-size: 0.9rem; }
     @media only screen and (max-width: 480px) {

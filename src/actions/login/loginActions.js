@@ -16,6 +16,7 @@ import UNIVERSAL from "../../config/config";
 import firebase from "firebase";
 import history from "../../history";
 import { googleProvider } from "../../config/firebaseConfig";
+import { get_user_cart } from "../cart/cartActions";
 
 export function signup(user) {
   return (dispatch) => {
@@ -104,6 +105,7 @@ export function do_login(user) {
       .then((responseJson) => {
         if (responseJson.status === "success") {
           dispatch(set_login(responseJson.data));
+          dispatch(get_user_cart(responseJson.data.user));
           dispatch(reset_user());
           history.push("/");
           dispatch(set_snackbar(responseJson.message, true, "success"));
@@ -121,6 +123,7 @@ export function do_login(user) {
 export function set_login(payload) {
   localStorage.setItem("megastore_token", payload.token);
   localStorage.setItem("megastore_login", JSON.stringify(payload.user));
+
   return {
     type: LOGIN,
     payload: payload.user,
