@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SnackBar from "../components/Snackbar";
 
 function Signup({
@@ -9,6 +9,9 @@ function Signup({
   set_user_confirm_password,
   ...rest
 }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="signup">
       <div className="cont card border-success">

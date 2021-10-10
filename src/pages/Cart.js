@@ -1,12 +1,16 @@
 import React from "react";
 import { useEffect } from "react";
-import item1 from "../img/1.jpg";
 
-function Cart({ cart, login }) {
+function Cart({
+  cart,
+  login,
+  add_to_cart,
+  increase_quantity,
+  decrease_quantity,
+}) {
   useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <div className="cart">
@@ -18,7 +22,7 @@ function Cart({ cart, login }) {
               <tr>
                 <th scope="col">Product</th>
                 <th scope="col">quantity</th>
-                <th scope="col">Total Price</th>
+                <th scope="col">Price</th>
                 {/* <th scope="col" /> */}
               </tr>
             </thead>
@@ -28,24 +32,34 @@ function Cart({ cart, login }) {
                   <tr>
                     <td>
                       <div className="row__cont item_name">
-                        <img src={row.productImage} />
+                        <img src={row.productImage} alt={row.productName} />
                         <p>{row.productName}</p>
                       </div>
                     </td>
                     <td>
                       <div className="row__cont quantity">
-                        <button className="btn btn-outline-dark text-primary ">
+                        <button
+                          className="btn btn-outline-dark text-primary"
+                          onClick={() =>
+                            decrease_quantity(row.productId, login)
+                          }
+                        >
                           <i class="fas fa-minus" />
                         </button>
                         <p className="amount">{row.quantity}</p>
-                        <button className="btn btn-outline-dark text-primary">
+                        <button
+                          className="btn btn-outline-dark text-primary"
+                          onClick={() =>
+                            increase_quantity(row.productId, login)
+                          }
+                        >
                           <i class="fas fa-plus" />
                         </button>
                       </div>
                     </td>
                     <td>
                       <div className="row__cont">
-                        <h5>&#8377; {row.productPrice}</h5>
+                        <h5>&#8377; {row.productPrice * row.quantity}</h5>
                       </div>
                     </td>
                   </tr>

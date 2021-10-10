@@ -1,6 +1,7 @@
 import Header from "../../components/Header";
 import { set_snackbar_status } from "../../actions/snackbar/snackbarActions";
 import { get_user_cart } from "../../actions/cart/cartActions";
+import { get_user_wishlist } from "../../actions/wishlist/wishlistActions";
 import {
   set_user_email,
   set_user_password,
@@ -21,6 +22,7 @@ const mapStateToProps = (store) => {
     snackbar: store.snackbar,
     user: store.user,
     cart: store.cart,
+    wishlist: store.wishlist,
   };
 };
 
@@ -46,6 +48,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     get_user_cart: (login) => {
       dispatch(get_user_cart(login));
+    },
+    get_user_wishlist: (login) => {
+      dispatch(get_user_wishlist(login));
     },
   };
 };

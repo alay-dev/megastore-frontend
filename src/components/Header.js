@@ -9,6 +9,7 @@ import logoImg from "../img/logo.png";
 function Header({
   user,
   cart,
+  wishlist,
   set_user_email,
   set_user_password,
   set_reload_login,
@@ -16,6 +17,7 @@ function Header({
   login,
   logout,
   get_user_cart,
+  get_user_wishlist,
 }) {
   const [login_drawer, setLoginDrawer] = useState(false);
   const [nav_open, setNavOpen] = useState(false);
@@ -31,13 +33,10 @@ function Header({
   useEffect(() => {
     if (localStorage.getItem("megastore_token")) {
       get_user_cart(JSON.parse(localStorage.getItem("megastore_login")));
+      get_user_wishlist(JSON.parse(localStorage.getItem("megastore_login")));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    console.log(cart.cart.items?.length);
-  }, [cart]);
 
   return (
     <>
@@ -55,12 +54,15 @@ function Header({
             <>
               <Link to="/cart" style={{ textDecoration: "none" }}>
                 {/* <p>Cart</p> */}
-                <Badge badgeContent={cart.cart.items?.length} color="primary">
+                <Badge badgeContent={cart.cart.items.length} color="primary">
                   <ShoppingCartIcon style={{ color: "#343a40" }} />
                 </Badge>
               </Link>
-              <Link to="/" style={{ textDecoration: "none" }}>
-                <Badge badgeContent={10} color="primary">
+              <Link to="/wishlist" style={{ textDecoration: "none" }}>
+                <Badge
+                  badgeContent={wishlist.wishlist.items.length}
+                  color="primary"
+                >
                   <FavoriteIcon style={{ color: "#343a40" }} />
                 </Badge>
               </Link>

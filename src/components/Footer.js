@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <div className="footer">
-      <p className="up__arrow">
+      <p className="up__arrow" onClick={() => window.scrollTo(0, 0)}>
         <i class="fas fa-chevron-up" />
       </p>
       <div className="footer__sec">

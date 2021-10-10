@@ -7,10 +7,12 @@ import user from "./user/userReducers";
 import product from "./product/productReducers";
 import isCached from "./cache/cacheReducers";
 import cart from "./cart/cartReducers";
+import wishlist from "./wishlist/wishlistReducers";
 
 export default combineReducers({
   login,
   cart,
+  wishlist,
   user,
   product,
   isCached,

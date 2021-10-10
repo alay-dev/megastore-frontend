@@ -41,6 +41,9 @@ function ProductBycategory({
     household: "Household",
   };
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     setTitle(all_category[match.params.category]);
 
     if (!isCached[category_cache[match.params.category]]) {

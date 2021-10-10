@@ -65,6 +65,74 @@ export function add_to_cart(item, login) {
   };
 }
 
+export function increase_quantity(item, login) {
+  console.log("login", item, login);
+  return (dispatch) => {
+    return fetch(UNIVERSAL.BASEURL + `/api/cart/increase_quantity`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        // token: login.token,
+      },
+      body: JSON.stringify({
+        userId: login._id,
+        item: item,
+      }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === "success") {
+          dispatch(set_user_cart(responseJson.data));
+        } else {
+          if (responseJson.message === "User does not exist") {
+            // dispatch(onLogout()) ;
+          } else {
+            // dispatch(set_snack_bar(responseJson.status, responseJson.message))
+          }
+        }
+        // dispatch(unset_all_post_loader());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function decrease_quantity(item, login) {
+  console.log("login", item, login);
+  return (dispatch) => {
+    return fetch(UNIVERSAL.BASEURL + `/api/cart/decrease_quantity`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        // token: login.token,
+      },
+      body: JSON.stringify({
+        userId: login._id,
+        item: item,
+      }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === "success") {
+          dispatch(set_user_cart(responseJson.data));
+        } else {
+          if (responseJson.message === "User does not exist") {
+            // dispatch(onLogout()) ;
+          } else {
+            // dispatch(set_snack_bar(responseJson.status, responseJson.message))
+          }
+        }
+        // dispatch(unset_all_post_loader());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
 export function set_user_cart(payload) {
   return {
     type: SET_USER_CART,

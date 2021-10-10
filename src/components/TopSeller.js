@@ -8,6 +8,7 @@ function TopSeller({
   isCached,
   get_top_seller,
   set_top_seller_cache,
+  add_to_cart,
 }) {
   useEffect(() => {
     if (!isCached.top_seller_cache) {
@@ -32,7 +33,12 @@ function TopSeller({
                   <small>{row.name}</small>
                 </p>
                 <p className="text-info">&#8377; {row.price} </p>
-                <button className="btn-success btn mt-2">Add to cart</button>
+                <button
+                  className="btn-success btn mt-2"
+                  onClick={() => add_to_cart(row._id, login)}
+                >
+                  Add to cart
+                </button>
               </div>
             </div>
           );

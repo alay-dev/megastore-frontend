@@ -8,6 +8,7 @@ import {
   set_deal_of_the_day_cache,
   set_top_seller_cache,
 } from "../../actions/cache/cacheActions";
+import { add_to_cart } from "../../actions/cart/cartActions";
 import { connect } from "react-redux";
 
 function HomeCont(props) {
@@ -41,6 +42,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     set_top_seller_cache: (status) => {
       dispatch(set_top_seller_cache(status));
+    },
+    add_to_cart: (item, login) => {
+      dispatch(add_to_cart(item, login));
     },
   };
 };
