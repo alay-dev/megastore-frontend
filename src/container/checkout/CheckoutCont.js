@@ -1,16 +1,12 @@
 import React from "react";
 import { set_snackbar_status } from "../../actions/snackbar/snackbarActions";
-import {
-  get_user_wishlist,
-  remove_from_wishlist,
-} from "../../actions/wishlist/wishlistActions";
-
-import Wishlist from "../../pages/Wishlist";
+import { place_order } from "../../actions/order/orderActions";
 import { connect } from "react-redux";
+import Checkout from "../../pages/Checkout";
 
-function WishlistCont(props) {
-  return <Wishlist {...props} />;
-}
+const CheckoutCont = (props) => {
+  return <Checkout {...props} />;
+};
 
 const mapStateToProps = (store) => {
   return {
@@ -19,7 +15,6 @@ const mapStateToProps = (store) => {
     snackbar: store.snackbar,
     isCached: store.isCached,
     cart: store.cart.cart,
-    wishlist: store.wishlist,
   };
 };
 
@@ -28,13 +23,10 @@ const mapDispatchToProps = (dispatch) => {
     set_snackbar_status: (status) => {
       dispatch(set_snackbar_status(status));
     },
-    get_user_wishlist: (login) => {
-      dispatch(get_user_wishlist(login));
-    },
-    remove_from_wishlist: (id, login) => {
-      dispatch(remove_from_wishlist(id, login));
+    place_order: (item, paymentMethod, login) => {
+      dispatch(place_order(item, paymentMethod, login));
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WishlistCont);
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutCont);

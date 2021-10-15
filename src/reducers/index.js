@@ -8,6 +8,7 @@ import product from "./product/productReducers";
 import isCached from "./cache/cacheReducers";
 import cart from "./cart/cartReducers";
 import wishlist from "./wishlist/wishlistReducers";
+import order from "./order/orderReducers";
 
 export default combineReducers({
   login,
@@ -18,4 +19,5 @@ export default combineReducers({
   isCached,
   loader,
   snackbar,
+  order,
 });

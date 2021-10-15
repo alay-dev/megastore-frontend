@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 import product2 from "../img/2.jpg";
 
@@ -155,24 +156,26 @@ function ProductBycategory({
       <div className="foodgrain__cont">
         {product?.all_products.map((row) => {
           return (
-            <div className="card border-info" key={uuidv4()}>
-              <div className="card-body">
-                <img src={product2} alt="row.name" />
-                <p
-                  className="card-text"
-                  style={{ borderBottom: "1px solid #eee" }}
-                >
-                  <small>{row.name}</small>
-                </p>
-                <p className="text-info">&#8377; {row.price} </p>
-                <button
-                  onClick={() => add_to_cart(row._id, login)}
-                  className="btn-success btn mt-2"
-                >
-                  Add to cart
-                </button>
+            <Link to={`/item/${row._id}`} style={{ textDecoration: "none" }}>
+              <div className="card border-info" key={uuidv4()}>
+                <div className="card-body">
+                  <img src={product2} alt="row.name" />
+                  <p
+                    className="card-text"
+                    style={{ borderBottom: "1px solid #eee" }}
+                  >
+                    <small>{row.name}</small>
+                  </p>
+                  <p className="text-info">&#8377; {row.price} </p>
+                  <button
+                    onClick={() => add_to_cart(row._id, login)}
+                    className="btn-success btn mt-2"
+                  >
+                    Add to cart
+                  </button>
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
         {product?.all_products.length === 0 ? (

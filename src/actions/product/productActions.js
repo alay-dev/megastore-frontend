@@ -54,7 +54,7 @@ export function get_products_by_category(category, login) {
   return (dispatch) => {
     // dispatch(set_all_post_loader());
 
-    return fetch(UNIVERSAL.BASEURL + `/api/products/${category}`, {
+    return fetch(UNIVERSAL.BASEURL + `/api/products/category/${category}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -145,9 +145,9 @@ export function get_top_seller(login) {
 
 export function get_product_by_id(id, login) {
   return (dispatch) => {
-    dispatch(set_post_loader());
+    // dispatch(set_post_loader())
 
-    return fetch(UNIVERSAL.BASEURL + `/api/product/${id}`, {
+    return fetch(UNIVERSAL.BASEURL + `/api/products/${id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",

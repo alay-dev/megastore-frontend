@@ -33,6 +33,7 @@ function Header({
   useEffect(() => {
     if (localStorage.getItem("megastore_token")) {
       get_user_cart(JSON.parse(localStorage.getItem("megastore_login")));
+      console.log("header");
       get_user_wishlist(JSON.parse(localStorage.getItem("megastore_login")));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,13 +55,13 @@ function Header({
             <>
               <Link to="/cart" style={{ textDecoration: "none" }}>
                 {/* <p>Cart</p> */}
-                <Badge badgeContent={cart.cart.items.length} color="primary">
+                <Badge badgeContent={cart?.cart?.items?.length} color="primary">
                   <ShoppingCartIcon style={{ color: "#343a40" }} />
                 </Badge>
               </Link>
               <Link to="/wishlist" style={{ textDecoration: "none" }}>
                 <Badge
-                  badgeContent={wishlist.wishlist.items.length}
+                  badgeContent={wishlist?.wishlist?.items?.length}
                   color="primary"
                 >
                   <FavoriteIcon style={{ color: "#343a40" }} />

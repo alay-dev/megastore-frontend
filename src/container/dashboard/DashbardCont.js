@@ -1,6 +1,7 @@
 import Dashboard from "../../pages/Dashboard";
 import { set_snackbar_status } from "../../actions/snackbar/snackbarActions";
 import { get_all_users } from "../../actions/user/userActions";
+import { get_all_order } from "../../actions/order/orderActions";
 import {
   get_all_products,
   set_product_category,
@@ -28,6 +29,7 @@ const mapStateToProps = (store) => {
     snackbar: store.snackbar,
     user: store.user,
     product: store.product,
+    order: store.order,
   };
 };
 
@@ -74,6 +76,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     delete_product: (id, login) => {
       dispatch(delete_product(id, login));
+    },
+    get_all_order: (login) => {
+      dispatch(get_all_order(login));
     },
   };
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Cart({
   cart,
@@ -14,7 +15,9 @@ function Cart({
   return (
     <div>
       <div className="cart">
-        <button className="btn btn-dark btn-lg">Continue</button>
+        <Link to={`/checkout`} style={{ textDecoration: "none" }}>
+          <button className="btn btn-dark btn-lg">Continue</button>
+        </Link>
         <br />
         <div className="table__cont">
           <table class="table table-hover">

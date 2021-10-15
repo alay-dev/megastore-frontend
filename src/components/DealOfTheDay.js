@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 import product2 from "../img/2.jpg";
 
@@ -29,13 +30,21 @@ function DealOfTheDay({
           return (
             <div className="card border-info" key={uuidv4()}>
               <div className="card-body">
-                <img src={product2} alt={row.name} />
-                <p
-                  className="card-text"
-                  style={{ borderBottom: "1px solid #eee" }}
+                <Link
+                  to={`/item/${row._id}`}
+                  style={{ textDecoration: "none" }}
                 >
-                  <small>{row.name}</small>
-                </p>
+                  <img src={product2} alt={row.name} />
+                  <p
+                    className="card-text"
+                    style={{
+                      borderBottom: "1px solid #eee",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <small>{row.name}</small>
+                  </p>
+                </Link>
                 <p className="text-info">&#8377; {row.price} </p>
                 <button
                   className="btn-success btn mt-2"

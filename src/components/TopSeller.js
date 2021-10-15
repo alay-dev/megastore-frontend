@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import product1 from "../img/1.jpg";
 
@@ -25,17 +26,24 @@ function TopSeller({
           return (
             <div className="card border-info" key={uuidv4()}>
               <div className="card-body">
-                <img src={product1} alt={row.name} />
-                <p
-                  className="card-text"
-                  style={{ borderBottom: "1px solid #eee" }}
+                <Link
+                  to={`/item/${row._id}`}
+                  style={{ textDecoration: "none" }}
                 >
-                  <small>{row.name}</small>
-                </p>
-                <p className="text-info">&#8377; {row.price} </p>
+                  <img src={product1} alt={row.name} />
+                  <p
+                    className="card-text"
+                    style={{ borderBottom: "1px solid #eee" }}
+                  >
+                    <small>{row.name}</small>
+                  </p>
+                  <p className="text-info">&#8377; {row.price} </p>
+                </Link>
                 <button
                   className="btn-success btn mt-2"
-                  onClick={() => add_to_cart(row._id, login)}
+                  onClick={(e) => {
+                    add_to_cart(row._id, login);
+                  }}
                 >
                   Add to cart
                 </button>

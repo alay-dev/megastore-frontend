@@ -12,12 +12,14 @@ import {
   SET_PRODUCT_OLD_IMAGE,
   SET_DEAL_OF_THE_DAY,
   SET_TOP_SELLER,
+  SET_CURRENT_PRODUCT,
 } from "../../constants/product/productConst";
 
 const initial_state = {
   all_products: [],
   deal_of_the_day: [],
   top_seller: [],
+  current_product: "",
   name: "",
   price: "",
   category: "",
@@ -55,6 +57,8 @@ export default function reducer(state = initial_state, action) {
       return (state = { ...state, deal_of_the_day: action.payload });
     case SET_TOP_SELLER:
       return (state = { ...state, top_seller: action.payload });
+    case SET_CURRENT_PRODUCT:
+      return (state = { ...state, current_product: action.payload });
     case RESET_PRODUCT:
       return (state = {
         ...action.payload,

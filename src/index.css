@@ -391,7 +391,18 @@ body {
     .item {
       padding: 2rem 1rem; } }
   .item__left {
+    position: relative;
     border-radius: 1rem; }
+    .item__left .icon__cont {
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 0.5rem 0.8rem;
+      position: absolute;
+      top: 0;
+      right: -2rem;
+      font-size: 1.2rem;
+      box-shadow: 1px 4px 6px 0px rgba(0, 0, 0, 0.35);
+      cursor: pointer; }
     .item__left img {
       width: 20rem; }
       @media only screen and (max-width: 800px) {

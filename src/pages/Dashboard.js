@@ -14,6 +14,7 @@ function Dashboard(props) {
   useEffect(() => {
     props.get_all_users(props.login);
     props.get_all_products(props.login);
+    props.get_all_order(props.login);
   }, []);
 
   useEffect(() => {
