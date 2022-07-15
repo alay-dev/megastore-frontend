@@ -9,12 +9,13 @@ import {
   TableCell,
   TableHead,
   Dialog,
-} from "@material-ui/core";
+} from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-function OrderSection({ order }) {
+function OrderSection({ order, get_one_order }) {
   const [idDialog, setIdDialog] = useState(false);
   const [itemDialog, setItemDialog] = useState(false);
   return (
@@ -91,7 +92,7 @@ function OrderSection({ order }) {
                       fontSize: "1rem",
                     }}
                   >
-                    {i++}
+                    {++i}
                   </TableCell>
                   <TableCell
                     component="th"
@@ -104,26 +105,21 @@ function OrderSection({ order }) {
                   </TableCell>
                   <Dialog open={idDialog} onClose={() => setIdDialog(false)}>
                     <div style={{ padding: "2rem " }}>
-                      <p>Order ID : {row.orderId}</p>
+                      <p>Order ID : {row._id}</p>
                     </div>
                   </Dialog>
 
                   <TableCell align="center">
                     <IconButton
                       size="small"
-                      onClick={() => setItemDialog(true)}
+                      onClick={() => {
+                        get_one_order(row._id);
+                        setItemDialog(true);
+                      }}
                     >
                       <i className="fas fa-shopping-bag" />
                     </IconButton>
                   </TableCell>
-                  <Dialog
-                    open={itemDialog}
-                    onClose={() => setItemDialog(false)}
-                  >
-                    <div style={{ padding: "2rem " }}>
-                      <p>Order ID : {row.orderId}</p>
-                    </div>
-                  </Dialog>
                   <TableCell align="center">{row.paymentMethod}</TableCell>
                   <TableCell align="center">
                     {moment(row.orderDate).format("MMM Do YY")}
@@ -158,6 +154,20 @@ function OrderSection({ order }) {
           </TableBody>
         </Table>
       </TableContainer>
+      <Dialog open={itemDialog} onClose={() => setItemDialog(false)}>
+        <div style={{ padding: "2rem " }}>
+          {order?.current_order?.allItemId?.map((item) => {
+            return (
+              <>
+                <p>
+                  <Link to={`/item/${item.item._id}`}>{item.item.name}</Link>{" "}
+                  --- {item.quantity}
+                </p>
+              </>
+            );
+          })}
+        </div>
+      </Dialog>
     </div>
   );
 }

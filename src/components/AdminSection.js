@@ -8,7 +8,7 @@ import {
   TableRow,
   TableCell,
   TableHead,
-} from "@material-ui/core";
+} from "@mui/material";
 
 function UserSection() {
   return (

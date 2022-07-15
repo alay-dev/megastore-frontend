@@ -1,11 +1,21 @@
 .signup {
-  margin-top: 3.2rem;
+  margin-top: 4rem;
   padding: 4rem 5rem 4rem;
   min-height: 50vh;
   display: flex;
   justify-content: center;
+  // background-image: linear-gradient(to right bottom, #19aa8d8e, #fff 60%);
 
-  background-image: linear-gradient(to right bottom, #19aa8d8e, #fff 60%);
+  & img {
+    width: 25rem;
+    object-fit: contain;
+  }
+
+  @media only screen and (max-width: 700px) {
+    & img {
+      display: none;
+    }
+  }
 
   @media only screen and (max-width: 480px) {
     padding: 2rem 0.2rem 3rem;
@@ -13,6 +23,11 @@
 
   & .cont {
     width: 25rem;
+    margin-left: 10rem;
+
+    @media only screen and (max-width: 870px) {
+      margin-left: 0.5rem;
+    }
 
     & .addon {
       position: relative;
@@ -23,7 +38,6 @@
         left: 50%;
         font-size: 0.5rem;
         color: #fff;
-
         transform: translate(-50%, -10%);
       }
     }

@@ -8,7 +8,7 @@ import {
   TableRow,
   TableCell,
   TableHead,
-} from "@material-ui/core";
+} from "@mui/material";
 
 function UserSection({ user }) {
   return (
@@ -59,44 +59,46 @@ function UserSection({ user }) {
           </TableHead>
           <TableBody>
             {user?.all_users?.map((row, i) => {
-              return (
-                <TableRow>
-                  <TableCell
-                    style={{
-                      color: "#000",
-                      fontWeight: "700",
-                      fontSize: "1rem",
-                    }}
-                  >
-                    {++i}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.name ? row.name : ""}
-                  </TableCell>
+              if (row?.type === "U") {
+                return (
+                  <TableRow>
+                    <TableCell
+                      style={{
+                        color: "#000",
+                        fontWeight: "700",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      {++i}
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {row.name ? row.name : ""}
+                    </TableCell>
 
-                  <TableCell align="center">{row.email}</TableCell>
-                  <TableCell align="center">
-                    {row.contact_no ? row.contact_no : ""}
-                  </TableCell>
-                  <TableCell align="center">
-                    {row.address ? row.address : ""}
-                  </TableCell>
-                  <TableCell
-                    style={{
-                      display: "flex",
-                      gap: "1rem",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <IconButton size="small">
-                      <i className="fas fa-trash-alt" />
-                    </IconButton>
-                    <IconButton size="small">
-                      <i className="fas fa-pencil-alt" />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              );
+                    <TableCell align="center">{row.email}</TableCell>
+                    <TableCell align="center">
+                      {row.contact_no ? row.contact_no : ""}
+                    </TableCell>
+                    <TableCell align="center">
+                      {row.address ? row.address : ""}
+                    </TableCell>
+                    <TableCell
+                      style={{
+                        display: "flex",
+                        gap: "1rem",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <IconButton size="small">
+                        <i className="fas fa-trash-alt" />
+                      </IconButton>
+                      <IconButton size="small">
+                        <i className="fas fa-pencil-alt" />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                );
+              }
             })}
           </TableBody>
         </Table>

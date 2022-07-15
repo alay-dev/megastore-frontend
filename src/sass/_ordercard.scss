@@ -1,0 +1,23 @@
+.ordercard__main {
+  padding: 1rem;
+  width: 16rem;
+
+  & .order {
+    &__p {
+      font-size: 0.9rem;
+      color: grey;
+      margin: 0;
+      margin-bottom: 0.5rem;
+
+      // display: flex;
+      // align-items: center !important;
+      // font-size: 1.1rem;
+
+      & h4 {
+        margin: 0;
+        margin-right: 0.8rem;
+        color: #333 !important;
+      }
+    }
+  }
+}

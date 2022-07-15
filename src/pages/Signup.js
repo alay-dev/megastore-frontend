@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import SnackBar from "../components/Snackbar";
+import SignupImg from "../img/signup.svg";
 
 function Signup({
   user,
@@ -14,6 +15,7 @@ function Signup({
   }, []);
   return (
     <div className="signup">
+      <img src={SignupImg} alt="" />
       <div className="cont card border-success">
         <div className="card-header">
           <h3>Sign Up</h3>
@@ -23,7 +25,7 @@ function Signup({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              signup(this.props.user);
+              signup(user);
             }}
           >
             <div class="form-group">

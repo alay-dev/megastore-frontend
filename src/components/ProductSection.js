@@ -9,7 +9,7 @@ import {
   TableCell,
   TableHead,
   Modal,
-} from "@material-ui/core";
+} from "@mui/material";
 
 function ProductSection({
   login,

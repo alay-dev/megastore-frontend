@@ -10,6 +10,9 @@ import {
   SET_USER_NAME,
   SET_USER_OLD_IMG,
   SET_USER_PASSWORD,
+  SET_USER_HOMEADDRESS,
+  SET_USER_OTHERADDRESS,
+  SET_USER_WORKADDRESS,
 } from "../../constants/user/userConst";
 import { set_snackbar } from "../snackbar/snackbarActions";
 import { LOGIN } from "../../constants/login/loginConst";
@@ -57,7 +60,7 @@ export function get_all_users(login) {
   };
 }
 
-export function update_user(id, user, afterLogin, login) {
+export function update_user(id, user, login) {
   return (dispatch) => {
     dispatch(set_update_profile_loader());
     if (user.img !== "") {
@@ -74,26 +77,26 @@ export function update_user(id, user, afterLogin, login) {
         function () {
           uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
             console.log(downloadURL);
-            dispatch(update_user_api(id, user, afterLogin, login, downloadURL));
+            dispatch(update_user_api(id, user, login, downloadURL));
           });
         }
       );
     } else {
-      dispatch(update_user_api(id, user, afterLogin, login, user.old_img));
+      dispatch(update_user_api(id, user, login, user.old_img));
     }
   };
 }
 
-export function update_user_api(id, user, afterLogin, login, url) {
+export function update_user_api(id, user, login, url) {
   return (dispatch) => {
     // dispatch(setLoader());
-    console.log(afterLogin);
+
     return fetch(UNIVERSAL.BASEURL + "/api/users", {
       method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        token: localStorage.getItem("mycreativeside_token"),
+        token: localStorage.getItem("megastore_token"),
       },
       body: JSON.stringify({
         id: id,
@@ -106,22 +109,62 @@ export function update_user_api(id, user, afterLogin, login, url) {
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson.status === "success") {
-          if (afterLogin) {
-            localStorage.setItem(
-              "megastore_login",
-              JSON.stringify(responseJson.data)
-            );
-            dispatch({
-              type: LOGIN,
-              payload: responseJson.data,
-            });
-          }
           dispatch(set_snackbar(responseJson.message, true, "success"));
+          dispatch(
+            set_login({
+              token: localStorage.getItem("megastore_token"),
+              user: responseJson?.data,
+            })
+          );
         } else {
           if (responseJson.message === "User does not exist") {
             // dispatch(onLogout()) ;
           } else {
-            // dispatch(set_snack_bar(responseJson.status, responseJson.message))
+            // dispatch(login());
+          }
+        }
+        dispatch(unset_update_profile_loader());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function update_address(id, user, login) {
+  console.log(user, "user from action");
+  return (dispatch) => {
+    // dispatch(setLoader());
+
+    return fetch(UNIVERSAL.BASEURL + "/api/users", {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("megastore_token"),
+      },
+      body: JSON.stringify({
+        id: id,
+        workAddress: user.workAddress,
+        homeAddress: user.homeAddress,
+        otherAddress: user.otherAddress,
+      }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === "success") {
+          dispatch(set_snackbar(responseJson.message, true, "success"));
+          dispatch(
+            set_login({
+              token: localStorage.getItem("megastore_token"),
+              user: responseJson?.data,
+            })
+          );
+        } else {
+          if (responseJson.message === "User does not exist") {
+            // dispatch(onLogout()) ;
+          } else {
+            // dispatch(login());
           }
         }
         dispatch(unset_update_profile_loader());
@@ -134,7 +177,6 @@ export function update_user_api(id, user, afterLogin, login, url) {
 
 export function update_password(id, user, login) {
   return (dispatch) => {
-    console.log(user);
     dispatch(set_update_password_loader());
     if (user.password !== user.confirm_password) {
       dispatch(
@@ -239,6 +281,7 @@ export function delete_self(id) {
             // dispatch(onLogout()) ;
           } else {
             // dispatch(set_snack_bar(responseJson.status, responseJson.message))
+            console.log(responseJson.data);
           }
         }
         // dispatch(unsetLoader()) ;
@@ -298,6 +341,7 @@ export function set_user_email(payload) {
 }
 
 export function set_user_contact_num(payload) {
+  console.log(payload);
   return {
     type: SET_USER_CONTACT_NUM,
     payload: payload,
@@ -335,6 +379,27 @@ export function set_user_password(payload) {
 export function set_user_current_password(payload) {
   return {
     type: SET_USER_CURRENT_PASSWORD,
+    payload: payload,
+  };
+}
+
+export function set_user_work_address(payload) {
+  return {
+    type: SET_USER_WORKADDRESS,
+    payload: payload,
+  };
+}
+
+export function set_user_home_address(payload) {
+  return {
+    type: SET_USER_HOMEADDRESS,
+    payload: payload,
+  };
+}
+
+export function set_user_other_address(payload) {
+  return {
+    type: SET_USER_OTHERADDRESS,
     payload: payload,
   };
 }

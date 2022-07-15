@@ -1,74 +1,277 @@
 .cart {
-  margin-top: 3.2rem;
+  margin-top: 4rem;
   padding: 2rem 5rem;
   min-height: 50vh;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-
-  & .table__cont {
-    max-height: 70vh;
-    overflow-y: auto;
-    width: 100%;
-  }
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 2rem;
 
   @media only screen and (max-width: 800px) {
-    padding: 2rem 1rem;
+    padding: 1rem 0 0;
   }
 
-  @media only screen and (max-width: 480px) {
-    padding: 2rem 0.4rem;
-  }
-
-  & .item_name {
-    flex-wrap: wrap;
-
-    & p {
-      margin-bottom: 0;
-    }
-  }
-
-  & .quantity {
-    @media only screen and (max-width: 480px) {
-      gap: 0.2rem !important;
-    }
-
-    button {
-      @media only screen and (max-width: 480px) {
-        padding: 0.1rem 0.2rem !important;
-      }
-    }
-  }
-
-  & .row__cont {
-    min-height: 4rem;
+  &__empty {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
+    // gap: 1rem;
+    min-height: 70vh;
 
-    & button {
-      padding: 0.2rem 0.5rem;
+    img {
+      width: 16rem;
+      object-fit: contain;
+      object-position: center;
     }
 
-    & i {
-      font-size: 0.8rem;
+    h4 {
+      max-width: 20rem;
+      text-align: center;
     }
-    & .amount {
-      margin-bottom: 0;
-      border: 1px solid grey;
-      padding: 0 1rem;
+  }
+
+  &__left {
+    width: 50rem;
+
+    @media only screen and (max-width: 1200px) {
+      width: 30rem;
     }
 
-    & h5 {
-      @media only screen and (max-width: 480px) {
-        font-size: 1rem;
+    @media only screen and (max-width: 1000px) {
+      width: 100%;
+    }
+
+    &--top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+
+      & > * {
+        margin: 0;
       }
     }
+
+    &--itemwrapper {
+      width: 100%;
+      max-height: 26.5rem;
+      overflow: auto;
+
+      @media only screen and (max-width: 600px) {
+        max-height: max-content;
+      }
+    }
+
+    &--item {
+      width: 100%;
+      padding: 1.5rem 1rem;
+      display: flex;
+      gap: 1.5rem;
+
+      @media only screen and (max-width: 600px) {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      & .item__img {
+        max-width: 10rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        img {
+          width: 7rem;
+          height: 7rem;
+          object-fit: contain;
+          object-position: center;
+
+          @media only screen and (max-width: 600px) {
+            width: 5rem;
+            height: 5rem;
+          }
+        }
+
+        & .item__quantity {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          & .disable {
+            opacity: 0.5 !important;
+          }
+
+          &--btn {
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #999;
+            cursor: pointer;
+          }
+
+          &--field {
+            width: 4rem;
+            height: 2rem;
+            border: 1px solid #999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          & h5,
+          h4 {
+            margin: 0;
+          }
+        }
+      }
+
+      & .item__detail {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        h6 {
+          margin-bottom: 1.5rem;
+        }
+
+        &--price {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          & h6 {
+            text-decoration: line-through;
+          }
+
+          & h4,
+          h6 {
+            margin: 0;
+          }
+        }
+
+        &--cta {
+          margin-top: 1rem;
+          display: flex;
+          gap: 1rem;
+        }
+      }
+    }
+
+    & .place__order {
+      width: 100%;
+      box-shadow: 1px -3px 10px 0px rgba(0, 0, 0, 0.15);
+      padding: 1rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
   }
 
-  & td img {
-    width: 3rem;
-    height: 4rem;
-    object-fit: contain;
+  &__right {
+    width: 20rem;
+    padding: 1rem;
+
+    &--top {
+      margin-bottom: 1rem;
+
+      & > * {
+        margin: 0;
+      }
+    }
+
+    &--price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
+
+  // & .table__cont {
+  //   max-height: 70vh;
+  //   overflow-y: auto;
+  //   width: 100%;
+
+  //   & .empty__cart {
+  //     width: 100%;
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+
+  //     & img {
+  //       width: 15rem;
+  //       object-fit: contain;
+  //       opacity: 0.6;
+  //     }
+  //   }
+  // }
+
+  // @media only screen and (max-width: 800px) {
+  //   padding: 2rem 1rem;
+  // }
+
+  // @media only screen and (max-width: 480px) {
+  //   padding: 2rem 0.4rem;
+  // }
+
+  // & .item_name {
+  //   flex-wrap: wrap;
+
+  //   & p {
+  //     margin-bottom: 0;
+  //   }
+  // }
+
+  // & .quantity {
+  //   @media only screen and (max-width: 480px) {
+  //     gap: 0.2rem !important;
+  //   }
+
+  //   button {
+  //     @media only screen and (max-width: 480px) {
+  //       padding: 0.1rem 0.2rem !important;
+  //     }
+  //   }
+  // }
+
+  // & .row__cont {
+  //   min-height: 4rem;
+  //   display: flex;
+  //   align-items: center;
+  //   gap: 1rem;
+
+  //   & button {
+  //     padding: 0.2rem 0.5rem;
+  //   }
+
+  //   & i {
+  //     font-size: 0.8rem;
+  //   }
+  //   & .amount {
+  //     margin-bottom: 0;
+  //     border: 1px solid grey;
+  //     padding: 0 1rem;
+  //   }
+
+  //   & h5 {
+  //     @media only screen and (max-width: 480px) {
+  //       font-size: 1rem;
+  //     }
+  //   }
+  // }
+
+  // & td img {
+  //   width: 3rem;
+  //   height: 4rem;
+  //   object-fit: contain;
+  // }
 }

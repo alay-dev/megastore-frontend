@@ -19,6 +19,13 @@ import {
   SET_TOP_SELLER,
 } from "../../constants/product/productConst";
 
+import {
+  SET_PRODUCT_BY_CATEGORY_LOADER,
+  UNSET_PRODUCT_BY_CATEGORY_LOADER,
+  SET_PRODUCT_BY_ID_LOADER,
+  UNSET_PRODUCT_BY_ID_LOADER,
+} from "../../constants/loader/loaderConst";
+
 export function get_all_products(login) {
   return (dispatch) => {
     // dispatch(set_all_post_loader());
@@ -52,7 +59,7 @@ export function get_all_products(login) {
 
 export function get_products_by_category(category, login) {
   return (dispatch) => {
-    // dispatch(set_all_post_loader());
+    dispatch({ type: SET_PRODUCT_BY_CATEGORY_LOADER });
 
     return fetch(UNIVERSAL.BASEURL + `/api/products/category/${category}`, {
       method: "GET",
@@ -66,6 +73,7 @@ export function get_products_by_category(category, login) {
       .then((responseJson) => {
         if (responseJson.status === "success") {
           dispatch(set_all_products(responseJson.data));
+          dispatch({ type: UNSET_PRODUCT_BY_CATEGORY_LOADER });
         } else {
           if (responseJson.message === "User does not exist") {
             // dispatch(onLogout()) ;
@@ -73,7 +81,7 @@ export function get_products_by_category(category, login) {
             // dispatch(set_snack_bar(responseJson.status, responseJson.message))
           }
         }
-        // dispatch(unset_all_post_loader());
+        dispatch({ type: UNSET_PRODUCT_BY_CATEGORY_LOADER });
       })
       .catch((error) => {
         console.log(error);
@@ -145,7 +153,7 @@ export function get_top_seller(login) {
 
 export function get_product_by_id(id, login) {
   return (dispatch) => {
-    // dispatch(set_post_loader())
+    dispatch({ type: SET_PRODUCT_BY_ID_LOADER });
 
     return fetch(UNIVERSAL.BASEURL + `/api/products/${id}`, {
       method: "GET",
@@ -159,6 +167,7 @@ export function get_product_by_id(id, login) {
       .then((responseJson) => {
         if (responseJson.status === "success") {
           dispatch(set_current_product(responseJson.data));
+          dispatch({ type: UNSET_PRODUCT_BY_ID_LOADER });
         } else {
           if (responseJson.message === "User does not exist") {
             // dispatch(onLogout()) ;
@@ -167,7 +176,7 @@ export function get_product_by_id(id, login) {
           }
         }
 
-        // dispatch(unset_post_loader());
+        dispatch({ type: UNSET_PRODUCT_BY_ID_LOADER });
       })
       .catch((error) => {
         console.log(error);
@@ -175,45 +184,41 @@ export function get_product_by_id(id, login) {
   };
 }
 
-// export function add_product(product, login) {
-//   return (dispatch) => {
-//     dispatch(set_post_loader());
-//     if (product.image !== "") {
-//       var storageRef = firebase.storage().ref();
-//       var uploadTask = storageRef
-//         .child("products/" + product.name + ".png")
-//         .put(product.image);
-//       uploadTask.on(
-//         "state_changed",
-//         function (snapshot) {},
-//         function (error) {
-//           // dispatch(set_snack_bar(true, "Image Could Not Be sUploaded"));
-//         },
-//         function () {
-//           uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-//             dispatch(add_product_api(product, login, downloadURL));
-//           });
-//         }
-//       );
-//     } else {
-//       dispatch(add_product_api(product, login, ""));
-//     }
-//   };
-// }
-
 export function add_product(product, login) {
   return (dispatch) => {
+    dispatch(set_post_loader());
+    if (product.image !== "") {
+      var storageRef = firebase.storage().ref();
+      var uploadTask = storageRef
+        .child("products/" + product.name + ".png")
+        .put(product.image);
+      uploadTask.on(
+        "state_changed",
+        function (snapshot) {},
+        function (error) {
+          // dispatch(set_snack_bar(true, "Image Could Not Be sUploaded"));
+        },
+        function () {
+          uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            dispatch(add_product_api(product, login, downloadURL));
+          });
+        }
+      );
+    } else {
+      dispatch(add_product_api(product, login, ""));
+    }
+  };
+}
+
+export function add_product_api(product, login, downloadURL) {
+  return (dispatch) => {
     console.log(UNIVERSAL, "Baseurl...");
-    // const formData = new FormData();
-    // formData.append("name", product.name);
-    // formData.append("price", product.price);
-    // formData.append("category", product.category);
-    // formData.append("image", product.image);
     return fetch(UNIVERSAL.BASEURL + "/api/products", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        token: login?.token,
       },
       body: JSON.stringify({
         name: product.name,
@@ -223,8 +228,8 @@ export function add_product(product, login) {
         discount: product.discount,
         description: product.description,
         ratingsAverage: product.ratingsAverage,
+        image: downloadURL,
       }),
-      // body: formData,
     })
       .then((response) => response.json())
       .then((responseJson) => {

@@ -1,7 +1,7 @@
 import Dashboard from "../../pages/Dashboard";
 import { set_snackbar_status } from "../../actions/snackbar/snackbarActions";
 import { get_all_users } from "../../actions/user/userActions";
-import { get_all_order } from "../../actions/order/orderActions";
+import { get_all_order, get_one_order } from "../../actions/order/orderActions";
 import {
   get_all_products,
   set_product_category,
@@ -79,6 +79,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     get_all_order: (login) => {
       dispatch(get_all_order(login));
+    },
+    get_one_order: (id) => {
+      dispatch(get_one_order(id));
     },
   };
 };

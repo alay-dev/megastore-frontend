@@ -15,6 +15,14 @@ import {
   UNSET_UPDATE_PROFILE_LOADER,
   UNSET_UPDATE_PASSWORD_LOADER,
   UNSET_DELETE_LOADER,
+  SET_PRODUCT_BY_CATEGORY_LOADER,
+  UNSET_PRODUCT_BY_CATEGORY_LOADER,
+  SET_PRODUCT_BY_ID_LOADER,
+  UNSET_PRODUCT_BY_ID_LOADER,
+  SET_CART_LOADER,
+  UNSET_CART_LOADER,
+  SET_WISHLIST_LOADER,
+  UNSET_WISHLIST_LOADER,
 } from "../../constants/loader/loaderConst";
 
 const initial_state = {
@@ -26,6 +34,10 @@ const initial_state = {
   update_password_loader: false,
   update_profile_loader: false,
   delete_loader: false,
+  product_by_category_loader: false,
+  product_by_id: false,
+  cart_loader: false,
+  wishlist_loader: false,
 };
 
 export default function reducer(state = initial_state, action) {
@@ -62,6 +74,22 @@ export default function reducer(state = initial_state, action) {
       return (state = { ...state, delete_loader: true });
     case UNSET_DELETE_LOADER:
       return (state = { ...state, delete_loader: false });
+    case SET_PRODUCT_BY_CATEGORY_LOADER:
+      return (state = { ...state, product_by_category_loader: true });
+    case UNSET_PRODUCT_BY_CATEGORY_LOADER:
+      return (state = { ...state, product_by_category_loader: false });
+    case SET_PRODUCT_BY_ID_LOADER:
+      return (state = { ...state, product_by_id_loader: true });
+    case UNSET_PRODUCT_BY_ID_LOADER:
+      return (state = { ...state, product_by_id_loader: false });
+    case SET_CART_LOADER:
+      return (state = { ...state, cart_loader: true });
+    case UNSET_CART_LOADER:
+      return (state = { ...state, cart_loader: false });
+    case SET_WISHLIST_LOADER:
+      return (state = { ...state, wishlist_loader: true });
+    case UNSET_WISHLIST_LOADER:
+      return (state = { ...state, wishlist_loader: false });
     default:
       return state;
   }

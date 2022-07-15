@@ -13,6 +13,7 @@ import WishlistCont from "./container/wishlist/WishlistCont";
 import SignupCont from "./container/signup/SignupCont";
 import DashboardCont from "./container/dashboard/DashbardCont";
 import ProductByCategoryCont from "./container/ProductByCategory/ProductByCategoryCont";
+import ProfileCont from "./container/profile/ProfileCont";
 
 import firebase from "firebase";
 import firebaseConfig from "./config/firebaseConfig";
@@ -27,16 +28,14 @@ function App() {
       <HeaderCont />
       <Switch>
         <Route exact path="/" component={HomeCont} />
-
-        <Route exact path="/item/:product_id" component={ItemCont} />
         <Route exact path="/cart" component={CartCont} />
         <Route exact path="/checkout" component={CheckoutCont} />
         <Route exact path="/wishlist" component={WishlistCont} />
-
+        <Route exact path="/item/:product_id" component={ItemCont} />
         <Route exact path="/signup" component={SignupCont} />
         <Route exact path="/dashboard" component={DashboardCont} />
-
-        <Route sxact path="/:category" component={ProductByCategoryCont} />
+        <Route exact path="/profile" component={ProfileCont} />
+        <Route exact path="/:category" component={ProductByCategoryCont} />
       </Switch>
       <Footer />
     </Router>

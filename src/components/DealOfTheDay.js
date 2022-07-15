@@ -26,7 +26,7 @@ function DealOfTheDay({
         <h4 className="text-secondary">DEAL OF THE DAY</h4>
       </div>
       <div className="dealoftheday__cont">
-        {product.deal_of_the_day.map((row) => {
+        {product?.deal_of_the_day?.map((row) => {
           return (
             <div className="card border-info" key={uuidv4()}>
               <div className="card-body">

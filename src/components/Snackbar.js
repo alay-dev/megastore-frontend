@@ -1,6 +1,6 @@
 import React from "react";
-import { Snackbar } from "@material-ui/core";
-import MuiAlert from "@material-ui/lab/Alert";
+import { Snackbar, Alert } from "@mui/material";
+// import MuiAlert from "@mui/material/Alert";
 
 function SnackBar({ snackbar, set_snackbar_status }) {
   const handleClose = (e, reason) => {
@@ -10,19 +10,23 @@ function SnackBar({ snackbar, set_snackbar_status }) {
     set_snackbar_status(false);
   };
 
-  const Alert = (props) => {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-  };
+  // const Alert = (props) => {
+  //   return <MuiAlert elevation={6} variant="filled" {...props} />;
+  // };
 
   return (
     <div>
       <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        // anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         open={snackbar?.status}
-        autoHideDuration={6000}
+        autoHideDuration={4000}
         onClose={handleClose}
       >
-        <Alert severity={snackbar?.severity} onClose={handleClose}>
+        <Alert
+          severity={snackbar?.severity}
+          onClose={handleClose}
+          variant="filled"
+        >
           {snackbar?.message}
         </Alert>
       </Snackbar>

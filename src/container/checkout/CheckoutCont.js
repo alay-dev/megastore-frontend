@@ -23,8 +23,8 @@ const mapDispatchToProps = (dispatch) => {
     set_snackbar_status: (status) => {
       dispatch(set_snackbar_status(status));
     },
-    place_order: (item, paymentMethod, login) => {
-      dispatch(place_order(item, paymentMethod, login));
+    place_order: (item, cartId, paymentMethod, login) => {
+      dispatch(place_order(item, cartId, paymentMethod, login));
     },
   };
 };

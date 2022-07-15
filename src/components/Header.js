@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Drawer, Badge } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import {
+  Drawer,
+  Badge,
+  Avatar,
+  Menu,
+  MenuItem,
+  Divider,
+  ListItemIcon,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import Logout from "@mui/icons-material/Logout";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { Link } from "react-router-dom";
 import logoImg from "../img/logo.png";
+import LoginImg from "../img/login.svg";
 
 function Header({
   user,
@@ -21,11 +34,14 @@ function Header({
 }) {
   const [login_drawer, setLoginDrawer] = useState(false);
   const [nav_open, setNavOpen] = useState(false);
+  const [menu, setMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
     if (localStorage.getItem("megastore_token")) {
+      const token = localStorage.getItem("megastore_token");
       const loginData = JSON.parse(localStorage?.getItem("megastore_login"));
-      set_reload_login(loginData);
+      set_reload_login({ token, ...loginData });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -43,7 +59,7 @@ function Header({
     <>
       <div className="header ">
         <Link to="/">
-          <img src={logoImg} />
+          <img src={logoImg} alt="logo" />
         </Link>
 
         <div className="header__right">
@@ -53,27 +69,108 @@ function Header({
 
           {login?.email ? (
             <>
-              <Link to="/cart" style={{ textDecoration: "none" }}>
-                {/* <p>Cart</p> */}
-                <Badge badgeContent={cart?.cart?.items?.length} color="primary">
-                  <ShoppingCartIcon style={{ color: "#343a40" }} />
-                </Badge>
-              </Link>
-              <Link to="/wishlist" style={{ textDecoration: "none" }}>
+              {/* <Link to="/wishlist" style={{ textDecoration: "none" }}>
                 <Badge
                   badgeContent={wishlist?.wishlist?.items?.length}
                   color="primary"
                 >
                   <FavoriteIcon style={{ color: "#343a40" }} />
                 </Badge>
-              </Link>
-              <button
+              </Link> */}
+              {/* <button
                 className="btn btn-dark"
                 // style={{ cursor: "pointer" }}
                 onClick={() => logout()}
               >
-                Logout
-              </button>
+                <i className="fas fa-sign-out-alt" />
+                &nbsp; Logout
+              </button> */}
+              <p
+                style={{ cursor: "pointer" }}
+                className="dropdown-toggle"
+                onClick={(e) => {
+                  setAnchorEl(e.currentTarget);
+                  setMenu(true);
+                }}
+              >
+                {login?.name?.split(" ")[0]}
+              </p>
+              <Link to="/cart" style={{ textDecoration: "none" }}>
+                <Badge badgeContent={cart?.cart?.items?.length} color="primary">
+                  <ShoppingCartIcon style={{ color: "#343a40" }} />
+                </Badge>
+              </Link>
+              <Menu
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={menu}
+                onClose={() => setMenu(false)}
+                onClick={() => setMenu(false)}
+                PaperProps={{
+                  elevation: 0,
+                  sx: {
+                    overflow: "visible",
+                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                    mt: 1.5,
+                    "&:before": {
+                      content: '""',
+                      display: "block",
+                      position: "absolute",
+                      top: 0,
+                      right: 14,
+                      width: 10,
+                      height: 10,
+                      bgcolor: "background.paper",
+                      transform: "translateY(-50%) rotate(45deg)",
+                      zIndex: 0,
+                    },
+                  },
+                }}
+                transformOrigin={{ horizontal: "right", vertical: "top" }}
+                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+              >
+                <Link
+                  to="/profile"
+                  style={{ textDecoration: "none", color: "#000000de" }}
+                >
+                  <MenuItem>
+                    <ListItemIcon>
+                      <AccountCircleIcon fontSize="small" />
+                    </ListItemIcon>
+                    Profile
+                  </MenuItem>
+                </Link>
+                <Link
+                  to="/wishlist"
+                  style={{ textDecoration: "none", color: "#000000de" }}
+                >
+                  <MenuItem>
+                    <ListItemIcon>
+                      <FavoriteIcon fontSize="small" />
+                    </ListItemIcon>
+                    Wishlist
+                  </MenuItem>
+                </Link>
+                <MenuItem>
+                  <ListItemIcon>
+                    <LocalMallIcon fontSize="small" />
+                  </ListItemIcon>
+                  Orders
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <NotificationsIcon fontSize="small" />
+                  </ListItemIcon>
+                  Notifications
+                </MenuItem>
+                <Divider />
+                <MenuItem onClick={() => logout()}>
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </Menu>
             </>
           ) : (
             <button
@@ -103,6 +200,7 @@ function Header({
           </Link>
           {login?.email ? (
             <button className="btn btn-dark" onClick={() => logout()}>
+              <i class="fas fa-sign-out-alt" />
               Logout
             </button>
           ) : (
@@ -123,7 +221,6 @@ function Header({
           open={login_drawer}
           onClose={() => setLoginDrawer(false)}
         >
-          {/* {list(anchor)} */}
           <div className="login__drawer">
             <CloseIcon
               onClick={() => setLoginDrawer(false)}
@@ -134,8 +231,8 @@ function Header({
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  do_login(user);
                   setLoginDrawer(false);
+                  do_login(user);
                 }}
               >
                 <div class="form-group">
@@ -177,6 +274,7 @@ function Header({
                 Dont have an account ? <Link to="/signup">Sign Up</Link>
               </small>
             </div>
+            <img src={LoginImg} alt="" />
           </div>
         </Drawer>
       </div>

@@ -9,6 +9,9 @@ import {
   SET_USER_OLD_IMG,
   RESET_USER,
   SET_ALL_USER,
+  SET_USER_WORKADDRESS,
+  SET_USER_OTHERADDRESS,
+  SET_USER_HOMEADDRESS,
 } from "../../constants/user/userConst";
 
 const initial_state = {
@@ -21,6 +24,9 @@ const initial_state = {
   current_password: "",
   img: "",
   old_img: "",
+  homeAddress: "",
+  workAddress: "",
+  otherAddress: "",
 };
 
 export default function reducer(state = initial_state, action) {
@@ -43,6 +49,12 @@ export default function reducer(state = initial_state, action) {
       return (state = { ...state, password: action.payload });
     case SET_USER_CONFIRM_PASSWORD:
       return (state = { ...state, confirm_password: action.payload });
+    case SET_USER_WORKADDRESS:
+      return (state = { ...state, workAddress: action.payload });
+    case SET_USER_HOMEADDRESS:
+      return (state = { ...state, homeAddress: action.payload });
+    case SET_USER_OTHERADDRESS:
+      return (state = { ...state, otherAddress: action.payload });
     case RESET_USER:
       return (state = {
         email: "",
@@ -53,6 +65,9 @@ export default function reducer(state = initial_state, action) {
         current_password: "",
         img: "",
         old_img: "",
+        homeAddress: "",
+        workAddress: "",
+        otherAddress: "",
       });
     default:
       return state;

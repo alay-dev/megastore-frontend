@@ -22,7 +22,7 @@ function TopSeller({
     <div className="topseller">
       <h5>STORE TOP SELLER </h5>
       <div className="topseller__cont">
-        {product.top_seller.map((row) => {
+        {product?.top_seller?.map((row) => {
           return (
             <div className="card border-info" key={uuidv4()}>
               <div className="card-body">
@@ -30,7 +30,7 @@ function TopSeller({
                   to={`/item/${row._id}`}
                   style={{ textDecoration: "none" }}
                 >
-                  <img src={product1} alt={row.name} />
+                  <img src={row?.image || product1} alt={row.name} />
                   <p
                     className="card-text"
                     style={{ borderBottom: "1px solid #eee" }}

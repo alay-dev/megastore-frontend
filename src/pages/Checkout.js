@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 
-export default function Checkout({ login, cart, place_order }) {
+import SnackBar from "../components/Snackbar";
+
+export default function Checkout({
+  login,
+  cart,
+  snackbar,
+  place_order,
+  set_snackbar_status,
+}) {
   const [cartTotal, setCartTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const [payamentMethod, setPaymentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [cartItem, setCartItem] = useState([]);
+  const [cartId, setCartId] = useState("");
   useEffect(() => {
     console.log(cart.items);
     let tmp = 0;
@@ -12,11 +21,12 @@ export default function Checkout({ login, cart, place_order }) {
 
     cart?.items?.map((item) => {
       tmp = tmp + item?.productPrice * item?.quantity;
-
       let tmp3 = (item?.productDiscount / 100) * item?.productPrice;
       tmp2 = tmp2 + tmp3 * item?.quantity;
       return null;
     });
+
+    tmp2 = Math.floor(tmp2);
 
     setCartTotal(tmp);
     setDiscount(tmp2);
@@ -26,24 +36,17 @@ export default function Checkout({ login, cart, place_order }) {
     let tmpCart = [];
     cart?.items?.map((item) => {
       let tmp = {
-        id: item.productId,
+        item: item.productId,
         quantity: item.quantity,
       };
-
-      console.log(">>>>", tmp);
 
       tmpCart.push(tmp);
       return null;
     });
     setCartItem(tmpCart);
-    console.log(cartItem);
+    setCartId(cart?._id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
-
-  const place_user_order = () => {
-    console.log(cartItem);
-    place_order(cartItem, payamentMethod, login);
-  };
 
   return (
     <div className="checkout">
@@ -55,14 +58,23 @@ export default function Checkout({ login, cart, place_order }) {
               <i className="fas fa-pen" />
             </p>
             <h6 className="text-dark lead">Alay Naru</h6>
-            <p className="address">
-              which roasted parts of sentences fly into your mouth. text should
-              nd return to its own, safe country. But nothing the copy said
-              could convince her and so
-            </p>
+            {/* <p className="address"> */}
+            <form>
+              <div class="form-group">
+                <label for="exampleSelect2" class="form-label mt-4">
+                  Delivery to :
+                </label>
+                <select multiple="" class="form-select" id="exampleSelect2">
+                  <option>Home</option>
+                  <option>Work</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </form>
+            {/* </p> */}
             <div className="contact_cont">
               <p className="text-primary">
-                <em>+91 123456789</em>
+                <em>{login?.contact_no}</em>
               </p>
               <p>&bull;</p>
               <p className="text-primary">
@@ -95,51 +107,53 @@ export default function Checkout({ login, cart, place_order }) {
       </div>
       <div className="payment">
         <h4>Payment method</h4>
+        <form>
+          <fieldset class="form-group">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input
+                  disabled
+                  type="radio"
+                  class="form-check-input"
+                  name="optionsRadios"
+                  id="optionsRadios1"
+                  value="option1"
+                  onClick={() => setPaymentMethod("upi")}
+                />
+                UPI
+              </label>
+            </div>
 
-        <fieldset class="form-group">
-          <div class="form-check">
-            <label class="form-check-label">
-              <input
-                type="radio"
-                class="form-check-input"
-                name="optionsRadios"
-                id="optionsRadios1"
-                value="option1"
-                onClick={() => setPaymentMethod("upi")}
-              />
-              UPI
-            </label>
-          </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input
+                  disabled
+                  type="radio"
+                  class="form-check-input"
+                  name="optionsRadios"
+                  id="optionsRadios2"
+                  value="option2"
+                  onClick={() => setPaymentMethod("paypal")}
+                />
+                Paypal
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  name="optionsRadios"
+                  id="optionsRadios3"
+                  value="option3"
+                  onClick={() => setPaymentMethod("cod")}
+                />
+                Cash on delivery
+              </label>
+            </div>
+          </fieldset>
 
-          <div class="form-check">
-            <label class="form-check-label">
-              <input
-                type="radio"
-                class="form-check-input"
-                name="optionsRadios"
-                id="optionsRadios2"
-                value="option2"
-                onClick={() => setPaymentMethod("paypal")}
-              />
-              Paypal
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input
-                type="radio"
-                class="form-check-input"
-                name="optionsRadios"
-                id="optionsRadios3"
-                value="option3"
-                onClick={() => setPaymentMethod("cod")}
-              />
-              Cash on delivery
-            </label>
-          </div>
-        </fieldset>
-
-        {/* <fieldset style={{ marginTop: "1.5rem " }} class="form-group">
+          {/* <fieldset style={{ marginTop: "1.5rem " }} class="form-group">
             <div class="form-check">
               <input
                 class="form-check-input"
@@ -153,13 +167,18 @@ export default function Checkout({ login, cart, place_order }) {
               </label>
             </div>
           </fieldset> */}
-        <button
-          onClick={() => place_order(cartItem, payamentMethod, login)}
-          className="btn btn-dark"
-        >
-          PLACE ORDER
-        </button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              place_order(cartItem, cartId, paymentMethod, login);
+            }}
+            className="btn btn-dark"
+          >
+            PLACE ORDER
+          </button>
+        </form>
       </div>
+      <SnackBar snackbar={snackbar} set_snackbar_status={set_snackbar_status} />
     </div>
   );
 }

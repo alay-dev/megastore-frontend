@@ -1,5 +1,5 @@
 .item {
-  margin-top: 3.2rem;
+  margin-top: 4rem;
   padding: 4rem 10rem;
   margin-bottom: 4rem;
   display: flex;
@@ -22,6 +22,14 @@
     padding: 2rem 1rem;
   }
 
+  &__center {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__left {
     // border: 2px solid #eee;
     position: relative;
@@ -35,7 +43,7 @@
       top: 0;
       right: -2rem;
       font-size: 1.2rem;
-      box-shadow: 1px 4px 6px 0px rgba(0, 0, 0, 0.35);
+      box-shadow: 1px 4px 6px 0px rgba(0, 0, 0, 0.15);
       cursor: pointer;
     }
     & img {
@@ -116,9 +124,17 @@
         margin-bottom: 0;
       }
 
-      & button {
-        @media only screen and (max-width: 480px) {
-          font-size: 0.9rem;
+      & .btn-cont {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+
+        & button {
+          @media only screen and (max-width: 480px) {
+            font-size: 0.9rem;
+          }
         }
       }
     }

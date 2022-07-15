@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyCwIV0uKBSehLkuA8YzMFUObHK1PyO4_V8",
   authDomain: "mega-store-961f3.firebaseapp.com",
   projectId: "mega-store-961f3",

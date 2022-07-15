@@ -17,6 +17,8 @@ import firebase from "firebase";
 import history from "../../history";
 import { googleProvider } from "../../config/firebaseConfig";
 import { get_user_cart } from "../cart/cartActions";
+import { reset_cart } from "../cart/cartActions";
+import { reset_wishlist } from "../wishlist/wishlistActions";
 
 export function signup(user) {
   return (dispatch) => {
@@ -126,7 +128,7 @@ export function set_login(payload) {
 
   return {
     type: LOGIN,
-    payload: payload.user,
+    payload: { token: payload.token, ...payload.user },
   };
 }
 
@@ -143,6 +145,8 @@ export function logout() {
     localStorage.removeItem("megastore_token");
     localStorage.removeItem("megastore_login");
     dispatch(set_snackbar("logout successfull", true, "success"));
+    dispatch(reset_cart());
+    dispatch(reset_wishlist());
     history.push("/");
     dispatch({
       type: LOGOUT,

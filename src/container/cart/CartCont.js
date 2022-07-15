@@ -4,9 +4,11 @@ import {
   add_to_cart,
   increase_quantity,
   decrease_quantity,
+  remove_from_cart,
 } from "../../actions/cart/cartActions";
 import Cart from "../../pages/Cart";
 import { connect } from "react-redux";
+import { add_to_wishlist } from "../../actions/wishlist/wishlistActions";
 
 function CartCont(props) {
   return <Cart {...props} />;
@@ -35,6 +37,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     decrease_quantity: (item, login) => {
       dispatch(decrease_quantity(item, login));
+    },
+    remove_from_cart: (item, login) => {
+      dispatch(remove_from_cart(item, login));
+    },
+    add_to_wishlist: (id, login) => {
+      dispatch(add_to_wishlist(id, login));
     },
   };
 };

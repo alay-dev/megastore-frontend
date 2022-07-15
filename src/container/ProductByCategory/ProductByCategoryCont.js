@@ -1,5 +1,6 @@
 import ProductByCategory from "../../pages/ProductByCategory";
 import { set_snackbar_status } from "../../actions/snackbar/snackbarActions";
+import { add_to_wishlist } from "../../actions/wishlist/wishlistActions";
 import {
   set_bakery_cache,
   set_beverage_cache,
@@ -63,6 +64,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     add_to_cart: (item, login) => {
       dispatch(add_to_cart(item, login));
+    },
+    add_to_wishlist: (id, login) => {
+      dispatch(add_to_wishlist(id, login));
     },
   };
 };

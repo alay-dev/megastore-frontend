@@ -1,0 +1,255 @@
+.profile {
+  margin-top: 4rem;
+  padding: 2rem 5rem;
+  min-height: 50vh;
+  background-color: #2b6777;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 1rem;
+  }
+
+  &__top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+
+    &--left {
+      & h4,
+      h6 {
+        color: #fff;
+      }
+    }
+  }
+
+  &__detail {
+    width: 100%;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.7rem;
+    box-shadow: 0px 0px 35px 0px rgba(0, 0, 0, 0.35);
+    display: flex;
+
+    &--left {
+      width: 14rem;
+      min-height: 30rem;
+      background-color: #d4cbcb;
+      margin-right: 4rem;
+
+      & ul {
+        list-style: none;
+        padding: 5rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 14rem;
+
+        & > *:not(:last-child) {
+          margin-bottom: 0.5rem;
+        }
+
+        & .active {
+          background-color: #fff;
+
+          & p {
+            font-weight: 600;
+          }
+
+          & .icon__cont {
+            background-color: #333;
+
+            & i {
+              color: #fff;
+            }
+          }
+        }
+
+        & .icon__cont {
+          background-color: #fff;
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 1rem;
+        }
+
+        & li {
+          display: flex;
+          align-items: center;
+          font-size: 1rem;
+          padding: 0.8rem 2.5rem;
+          width: 13rem;
+          border-radius: 0.4rem 0 0 0.4rem;
+          cursor: pointer;
+          transition: all 0.1s;
+
+          &:hover {
+            font-weight: 600;
+          }
+
+          & p {
+            margin: 0;
+            color: #333;
+          }
+        }
+      }
+    }
+
+    &--right {
+      & .orders {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        flex-wrap: wrap;
+        height: 30rem;
+        overflow: auto;
+        gap: 1.5rem;
+      }
+
+      & .address {
+        display: flex;
+        justify-content: space-between;
+
+        & form {
+          width: 20rem;
+          margin-right: 4rem;
+        }
+
+        &__right {
+          height: 30rem;
+          padding: 0 1rem;
+          overflow: auto;
+
+          &--card {
+            width: 20rem;
+
+            & button {
+              margin-right: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.profilem {
+  &__top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #fff;
+
+    &--left {
+      width: 70%;
+      & h6,
+      p {
+        color: #fff;
+      }
+
+      & p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+        line-height: 1rem;
+      }
+    }
+
+    &--right {
+      & button {
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  &__options {
+    background-color: #fff;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+    box-shadow: 0px 0px 35px 0px rgba(0, 0, 0, 0.35);
+
+    & ul {
+      list-style: none;
+      padding: 0;
+
+      & > *:not(:last-child) {
+        border-bottom: 1px solid #eee;
+      }
+
+      & li {
+        padding: 0.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.edit__drawer {
+  position: relative;
+  padding: 1rem;
+  width: 22rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  padding-top: 6rem;
+
+  & img {
+    position: absolute;
+    bottom: 1rem;
+    right: 0;
+    max-width: 80%;
+    object-fit: contain;
+    opacity: 0.7;
+    z-index: -1;
+  }
+
+  &--close {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+  }
+}
+
+.order__dialog {
+  position: relative;
+  padding: 5rem 1rem 1rem;
+  overflow: auto;
+
+  & > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  &--top {
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(212, 203, 203);
+
+    & h5 {
+      margin: 0;
+    }
+  }
+}
